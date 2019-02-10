@@ -3,8 +3,8 @@ import os
 import cv2
 import numpy as np
 
-# img = cv2.imread('..\\images\\all_and_lee.PNG')
-img = cv2.imread('C:\\Users\\Boaz Azulay\\Desktop\\test.JPEG')
+img = cv2.imread('..\\images\\all_and_lee.PNG')
+# img = cv2.imread('..\\images\\no_match.JPEG')
 img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 template = cv2.imread('..\\images\\lee.PNG',0)

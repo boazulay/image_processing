@@ -5,16 +5,18 @@ import cv2
 import numpy as np
 from PIL import ImageGrab
 import winsound
-frequency = 2500  # Set Frequency To 2500 Hertz
-duration = 1000  # Set Duration To 1000 ms == 1 second
+import wx
+
 
 def make_a_sound():
     print('Make a sound')
     winsound.Beep(frequency, duration)
 
-def jungler_arrive():
+def jungler_arrive(x, y):
+    print("jungler_arrive")
     make_a_sound()
-    print("jungler_arrive not implemted yets")
+    print("Jengler postion:", x, y)
+    s.DrawRectangle(x, y, 10, 10)
 
 def screenshot():
     screenshot = ImageGrab.grab().save("screenshot.png")
@@ -22,32 +24,20 @@ def screenshot():
     return img
 
 def is_jungler(loc):
-    print(loc[0])
-    print(loc[1])
-    mid_x = int(len(loc[0])/2)
-    mid_y = int(len(loc[1])/2)
     if loc[0].any():
-        print(loc[0][mid_x])
-        print(loc[1][mid_y])
-        jungler_arrive()
-
-
-# def is_jungler(loc):
-#     print(loc)
-#     for pt in zip(*loc[::-1]):
-#         print(pt)
-#         if pt is not None:
-#             jungler_arrive()
-#             # cv2.rectangle(img, pt, (pt[0]+w, pt[1]+h), (0, 255, 255), 2)
-#         else:
-#             jungler_missing()
-#         break
+        y = loc[0][int(len(loc[0])/2)]
+        x = loc[1][int(len(loc[1])/2)]
+        jungler_arrive(x, y)
 
 
 
 time_to_sleep=1
 frequency = 2500  # Set Frequency To 2500 Hertz
 duration = 200  # Set Duration To 1000 ms == 1 second
+app = wx.App(False)
+s = wx.ScreenDC()
+s.StartDrawingOnTop
+s.Pen = wx.Pen("#FF0000")
 
 while True:
     print('######################')
